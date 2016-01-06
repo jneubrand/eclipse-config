@@ -37,12 +37,8 @@
       </div>
     </div>
     <div class='item-container'>
-      <div class='item-container-header'>Color Scheme</div>
+      <div class='item-container-header'>Text Colors</div>
       <div class='item-container-content'>
-        <label class='item'>
-          Background Color
-          <input id='background_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
-        </label>
         <label class='item'>
           Hour Color
           <input id='hour_color_picker' type='text' class='item-color item-color-sunny' value='#BBBBBB'>
@@ -50,6 +46,22 @@
         <label class='item'>
           Minute Color
           <input id='minute_color_picker' type='text' class='item-color item-color-sunny' value='#BBBBBB'>
+        </label>
+        <label class='item'>
+          Date Color
+          <input id='date_color_picker' type='text' class='item-color item-color-sunny' value='#BBBBBB'>
+        </label>
+      </div>
+      <div class='item-container-footer'>
+        Choose the app's font colors. On black-and-white Pebbles, choosing any colors other than black or white defaults to white.
+      </div>
+    </div>
+    <div class='item-container'>
+      <div class='item-container-header'>Other Colors</div>
+      <div class='item-container-content'>
+        <label class='item'>
+          Background Color
+          <input id='background_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
         </label>
         <label class='item'>
           Puck Color
@@ -64,16 +76,12 @@
           <input id='flare_color_picker' type='text' class='item-color item-color-sunny' value='#FFFFFF'>
         </label>
         <label class='item'>
-          Date Color
-          <input id='date_color_picker' type='text' class='item-color item-color-sunny' value='#BBBBBB'>
-        </label>
-        <label class='item'>
           Eclipse Color
           <input id='eclipse_color_picker' type='text' class='item-color item-color-sunny' value='#FFFFFF'>
         </label>
       </div>
       <div class='item-container-footer'>
-        Choose the app's color scheme. On non-time-series Pebbles, choosing any colors other than black or white causes a gray.
+        Choose the app's color scheme. On black-and-white Pebbles, choosing any colors other than black or white defaults to gray.
       </div>
     </div>
 
