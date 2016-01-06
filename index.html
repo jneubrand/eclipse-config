@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Eclipse Configuration</title>
+  <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
+  <script src='js/slate.min.js'></script>
+  <style>
+  .title {
+    padding: 15px 10px;
+    text-transform: uppercase;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #888888;
+    text-align: center;
+  }
+  </style>
+  </head>
+
+  <body>
+    <h1 class='title'>Eclipse Configuration</h1>
+
+    <div class='item-container'>
+      <div class='item-container-header'>Color Scheme</div>
+      <div class='item-container-content'>
+        <label class='item'>
+          Background Color
+          <input id='background_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+        <label class='item'>
+          Hour Color
+          <input id='hour_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+        <label class='item'>
+          Minute Color
+          <input id='minute_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+        <label class='item'>
+          Puck Color
+          <input id='puck_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+        <label class='item'>
+          Moon Color
+          <input id='moon_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+        <label class='item'>
+          Flare Color
+          <input id='flare_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+        <label class='item'>
+          Date Color
+          <input id='date_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+        <label class='item'>
+          Eclipse Color
+          <input id='eclipse_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>
+        </label>
+      </div>
+      <div class='item-container-footer'>
+        Choose the app's color scheme. On non-time-series Pebbles, choosing any colors other than black or white causes a gray.
+      </div>
+    </div>
+
+    <div class='item-container'>
+      <div class='button-container'>
+        <input id='submit_button' type='button' class='item-button' value='SUBMIT'>
+      </div>
+    </div>
+  </body>
+  <script>
+  function getConfigData() {
+    var backgroundColorPicker = document.getElementById('background_color_picker');
+    var hourColorPicker       = document.getElementById('hour_color_picker');
+    var minuteColorPicker     = document.getElementById('minute_color_picker');
+    var puckColorPicker       = document.getElementById('puck_color_picker');
+    var moonColorPicker       = document.getElementById('moon_color_picker');
+    var flareColorPicker      = document.getElementById('flare_color_picker');
+    var dateColorPicker       = document.getElementById('date_color_picker');
+    var eclipseColorPicker    = document.getElementById('eclipse_color_picker');
+ 
+    var options = {
+      'background_color': backgroundColorPicker.value,
+      'hour_color': hourColorPicker.value,
+      'minute_color': minuteColorPicker.value,
+      'puck_color': puckColorPicker.value,
+      'moon_color': moonColorPicker.value,
+      'flare_color': flareColorPicker.value,
+      'date_color': dateColorPicker.value,
+      'eclipse_color': eclipseColorPicker.value
+    };
+
+    // Save for next launch
+    localStorage['background_color'] = options['background_color'];
+    localStorage['hour_color']       = options['hour_color'];
+    localStorage['minute_color']     = options['minute_color'];
+    localStorage['puck_color']       = options['puck_color'];
+    localStorage['moon_color']       = options['moon_color'];
+    localStorage['flare_color']      = options['flare_color'];
+    localStorage['date_color']       = options['date_color'];
+    localStorage['eclipse_color']    = options['eclipse_color'];
+
+    console.log('Got options: ' + JSON.stringify(options));
+    return options;
+  }
+
+  function getQueryParam(variable, defaultValue) {
+    var query = location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (pair[0] === variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    return defaultValue || false;
+  }
+ 
+  var submitButton = document.getElementById('submit_button');
+  submitButton.addEventListener('click', function() {
+    console.log('Submit');
+
+    // Set the return URL depending on the runtime environment
+    var return_to = getQueryParam('return_to', 'pebblejs://close#');
+    document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
+  });
+
+  (function() {
+    var backgroundColorPicker = document.getElementById('background_color_picker');
+    var hourColorPicker       = document.getElementById('hour_color_picker');
+    var minuteColorPicker     = document.getElementById('minute_color_picker');
+    var puckColorPicker       = document.getElementById('puck_color_picker');
+    var moonColorPicker       = document.getElementById('moon_color_picker');
+    var flareColorPicker      = document.getElementById('flare_color_picker');
+    var dateColorPicker       = document.getElementById('date_color_picker');
+    var eclipseColorPicker    = document.getElementById('eclipse_color_picker');
+
+    // Load any previously saved configuration, if available
+    if(localStorage['background_color']) {
+      backgroundColorPicker.value = localStorage['background_color'];
+      hourColorPicker.value       = localStorage['hour_color'];
+      minuteColorPicker.value     = localStorage['minute_color'];
+      puckColorPicker.value       = localStorage['puck_color'];
+      moonColorPicker.value       = localStorage['moon_color'];
+      flareColorPicker.value      = localStorage['flare_color'];
+      dateColorPicker.value       = localStorage['date_color'];
+      eclipseColorPicker.value    = localStorage['eclipse_color'];
+    }
+  })();
+  </script>
+</html>
