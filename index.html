@@ -94,6 +94,9 @@
     var dateColorPicker       = document.getElementById('date_color_picker');
     var eclipseColorPicker    = document.getElementById('eclipse_color_picker');
  
+    var hoursSmallerCheckbox  = document.getElementById('hours_smaller_checkbox');
+    var minutesBoldCheckbox   = document.getElementById('minutes_bold_checkbox');
+
     var options = {
       'background_color': backgroundColorPicker.value,
       'hour_color': hourColorPicker.value,
@@ -102,7 +105,10 @@
       'moon_color': moonColorPicker.value,
       'flare_color': flareColorPicker.value,
       'date_color': dateColorPicker.value,
-      'eclipse_color': eclipseColorPicker.value
+      'eclipse_color': eclipseColorPicker.value,
+
+      'hours_smaller': hoursSmallerCheckbox.checked,
+      'minutes_bold': minutesBoldCheckbox.checked
     };
 
     // Save for next launch
@@ -114,6 +120,9 @@
     localStorage['flare_color']      = options['flare_color'];
     localStorage['date_color']       = options['date_color'];
     localStorage['eclipse_color']    = options['eclipse_color'];
+
+    localStorage['hours_smaller']    = options['hours_smaller'];
+    localStorage['minutes_bold']     = options['minutes_bold'];
 
     console.log('Got options: ' + JSON.stringify(options));
     return options;
@@ -150,6 +159,9 @@
     var dateColorPicker       = document.getElementById('date_color_picker');
     var eclipseColorPicker    = document.getElementById('eclipse_color_picker');
 
+    var hoursSmallerCheckbox  = document.getElementById('hours_smaller_checkbox');
+    var minutesBoldCheckbox   = document.getElementById('minutes_bold_checkbox');
+
     // Load any previously saved configuration, if available
     if(localStorage['background_color']) {
       backgroundColorPicker.value = localStorage['background_color'];
@@ -160,6 +172,9 @@
       flareColorPicker.value      = localStorage['flare_color'];
       dateColorPicker.value       = localStorage['date_color'];
       eclipseColorPicker.value    = localStorage['eclipse_color'];
+
+      hoursSmallerCheckbox.checked = JSON.parse(localStorage['hours_smaller']);
+      minutesBoldCheckbox.checked  = JSON.parse(localStorage['minutes_bold']);
     }
   })();
   </script>
