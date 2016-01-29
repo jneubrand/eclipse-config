@@ -31,6 +31,10 @@
           Bold Minutes
           <input id='minutes_bold_checkbox' type='checkbox' class='item-toggle'>
         </label>
+        <label class='item'>
+          European Date
+          <input id='euro_date_checkbox' type='checkbox' class='item-toggle'>
+        </label>
       </div>
       <div class='item-container-footer'>
         Choose the app's font weights.
@@ -101,9 +105,10 @@
     var flareColorPicker      = document.getElementById('flare_color_picker');
     var dateColorPicker       = document.getElementById('date_color_picker');
     var eclipseColorPicker    = document.getElementById('eclipse_color_picker');
- 
+
     var hoursSmallerCheckbox  = document.getElementById('hours_smaller_checkbox');
     var minutesBoldCheckbox   = document.getElementById('minutes_bold_checkbox');
+    var euroDateCheckbox      = document.getElementById('euro_date_checkbox');
 
     var options = {
       'background_color': backgroundColorPicker.value,
@@ -116,7 +121,8 @@
       'eclipse_color': eclipseColorPicker.value,
 
       'hours_smaller': hoursSmallerCheckbox.checked,
-      'minutes_bold': minutesBoldCheckbox.checked
+      'minutes_bold': minutesBoldCheckbox.checked,
+      'euro_date': euroDateCheckbox.checked
     };
 
     // Save for next launch
@@ -131,6 +137,7 @@
 
     localStorage['hours_smaller']    = options['hours_smaller'];
     localStorage['minutes_bold']     = options['minutes_bold'];
+    localStorage['euro_date']     = options['euro_date'];
 
     console.log('Got options: ' + JSON.stringify(options));
     return options;
@@ -147,7 +154,7 @@
     }
     return defaultValue || false;
   }
- 
+
   var submitButton = document.getElementById('submit_button');
   submitButton.addEventListener('click', function() {
     console.log('Submit');
@@ -169,6 +176,7 @@
 
     var hoursSmallerCheckbox  = document.getElementById('hours_smaller_checkbox');
     var minutesBoldCheckbox   = document.getElementById('minutes_bold_checkbox');
+    var euroDateCheckbox      = document.getElementById('euro_date_checkbox');
 
     // Load any previously saved configuration, if available
     if(localStorage['background_color']) {
@@ -183,6 +191,7 @@
 
       hoursSmallerCheckbox.checked = JSON.parse(localStorage['hours_smaller']);
       minutesBoldCheckbox.checked  = JSON.parse(localStorage['minutes_bold']);
+      euroDateCheckbox.checked     = JSON.parse(localStorage['euro_date']);
     }
   })();
   </script>
